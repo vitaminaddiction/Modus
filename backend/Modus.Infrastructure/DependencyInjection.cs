@@ -2,8 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Modus.Application.Multitenancy;
+using Modus.Application.Security;
 using Modus.Infrastructure.Multitenancy;
 using Modus.Infrastructure.Persistence;
+using Modus.Infrastructure.Security;
 
 namespace Modus.Infrastructure;
 
@@ -24,6 +26,9 @@ public static class DependencyInjection
         // 멀티테넌시
         services.AddScoped<ITenantContext, TenantContext>();
         services.AddSingleton<ITenantStore, TenantStore>();
+
+        // 보안
+        services.AddSingleton<IPasswordHasher, Pbkdf2PasswordHasher>();
 
         // 테넌트 데이터 DB — 커넥션스트링을 요청 시점에 현재 테넌트로 해석
         services.AddDbContext<ModusDbContext>((sp, o) =>

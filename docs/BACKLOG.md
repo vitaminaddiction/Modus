@@ -4,13 +4,7 @@
 
 ## Phase 0 남은 청크 (권장: 청크당 한 세션)
 
-### 청크 A — #6 인증 + Program.cs 배선
-- `Program.cs` 재작성: 컨트롤러 방식, `AddModusInfrastructure`, CORS(AllowFrontend), 인증/인가, 미들웨어 순서(UseAuthentication → TenantResolution → UseAuthorization).
-- JWT 발급(HttpOnly 쿠키 `access_token`, `tenant` 클레임 포함), CSRF double-submit 미들웨어(XSRF-TOKEN 쿠키 + 헤더 검증).
-- `IPasswordHasher` DI 등록, 로그인 엔드포인트 `POST /api/web/auth/login` (테넌트+loginId+password), 로그아웃.
-- 검증: demo 테넌트로 로그인 → 쿠키 발급 확인(curl/REST).
-
-### 청크 B — #7 제네릭 CRUD 엔진
+### 청크 B — #7 제네릭 CRUD 엔진  ← 다음
 - `IRepository<T>` + 구현(ModusDbContext 기반), `CrudController<TEntity,TDto>` (목록/조회/생성/수정/삭제 + 페이징/정렬/필터).
 - 감사필드 자동(SaveChanges 오버라이드: CreatedAt/By, UpdatedAt/By).
 - `CodeGroupController`, `CodeController`로 검증(상속만).
