@@ -1,0 +1,29 @@
+# ---------- .NET ----------
+bin/
+obj/
+*.user
+*.suo
+.vs/
+artifacts/
+
+# ---------- Node / React ----------
+node_modules/
+dist/
+.vite/
+*.local
+
+# ---------- Secrets / local config (public repo!) ----------
+appsettings.Development.json
+appsettings.*.Local.json
+*.Development.json
+secrets-backup/
+.env
+.env.*
+
+# ---------- Codegen artifacts ----------
+web/src/api/generated.ts
+web/src/api/generated/
+
+# ---------- OS / editor ----------
+Thumbs.db
+.DS_Store
