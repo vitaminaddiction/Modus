@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16
+    container_name: modus-db
+    environment:
+      POSTGRES_USER: modus
+      POSTGRES_PASSWORD: modus_dev_pw
+      POSTGRES_DB: modus_catalog      # 카탈로그 DB. 테넌트 DB(modus_t_*)는 프로비저너 툴이 생성.
+    ports:
+      - "5433:5432"                   # 로컬 5432 충돌 회피 (55432는 Windows 예약범위라 5433 사용)
+    volumes:
+      - modus_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U modus -d modus_catalog"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  modus_pgdata:
