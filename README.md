@@ -20,7 +20,7 @@
 # DB
 docker compose up -d
 # 백엔드
-dotnet run --project backend/Mes.Api
+dotnet run --project backend/Modus.Api
 # 프론트
 cd web && npm install && npm run dev
 ```
